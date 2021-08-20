@@ -20,8 +20,9 @@
 
   &__repos-list {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(0, 360px));
+    grid-column-gap: 10px;
+    grid-row-gap: 16px;
   }
 }
 
