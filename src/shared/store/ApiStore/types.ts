@@ -1,6 +1,7 @@
 // Перечисление методов HTTP-запроса
-enum HTTPMethod {
-    // TODO: заполнить
+export enum HTTPMethod {
+    GET = 'GET',
+    POST = 'POST'
 }
 
 // Параметры запроса
@@ -18,8 +19,13 @@ export type RequestParams<ReqT> = {
 }
 
 // Перечисление статусов ответа
-enum StatusHTTP {
-    // TODO: заполнить
+export enum StatusHTTP {
+    OK = 200,
+    BAD_REQUEST = 400,
+    UNAUTHORIZED = 401,
+    FORBIDDEN = 403,
+    NOT_FOUND = 404,
+    INTERNAL_ERROR = 500
 }
 
 // Ответ API
@@ -37,9 +43,7 @@ export type ApiResponse<SuccessT, ErrorT> =
 
 // Интерфейс для класса, с помощью которого можно делать запросы к API
 export interface IApiStore {
-    // базовый url для выполнения запросов. TODO: указать url GitHub API в классе ApiStore
     readonly baseUrl: string;
 
-    // Метод, с помощью которого делается запрос. TODO: реализовать в классе ApiStore
     request<SuccessT, ErrorT = any, ReqT = {}>(params: RequestParams<ReqT>): Promise<ApiResponse<SuccessT, ErrorT>>
 }

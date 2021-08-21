@@ -1,12 +1,10 @@
 /** Интерфейс класса для работы с GitHub API
- * названия getSomeData и postSomeData
- * (а также типов GetSomeDataParams и PostSomeDataPrams)
+ * названия getOrganizationReposList
+ * (а также типов GetOrganizationReposListParams и RepoItem)
  * поменяйте в соответствии с выполняемым запросом.
+ * Или не меняйте, если делаете запрос за списком репоизториев для организации)
  * Выберите любой запрос из публичного API GitHub.
  */
 export interface IGitHubStore {
-    getSomeData(params: GetSomeDataParams): Promise<ApiResp<GetSumeDataResp>>;
-
-    // Необязательный пункт, т.к. требует авторизации. Понадобится в будущем
-    postSomeData(params: PostSomeDataPrams): Promise<ApiResp<PostSomeDataResp>>;
+    getOrganizationReposList(params: GetOrganizationReposListParams): Promise<ApiResp<RepoItem[]>>;
 }
