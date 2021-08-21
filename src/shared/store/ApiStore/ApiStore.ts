@@ -1,6 +1,11 @@
 import {ApiResponse, HTTPMethod, IApiStore, RequestParams, StatusHTTP} from "./types";
 import qs from 'qs';
 
+if (typeof window === 'undefined') {
+    // запускаем под Node, где нет fetch, поэтому переопределяем fetch
+    global.fetch = require('node-fetch');
+}
+
 export default class ApiStore implements IApiStore {
     readonly baseUrl: string;
 
@@ -20,10 +25,10 @@ export default class ApiStore implements IApiStore {
             });
 
             if (response.ok) {
-                const responseData = await response.json();
+                const data = await response.json();
                 return {
                     success: true,
-                    data: responseData,
+                    data,
                     status: StatusHTTP.OK
                 }
             }
