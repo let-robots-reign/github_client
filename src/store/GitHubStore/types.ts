@@ -16,5 +16,19 @@ export type GetOrgReposParams = {
 }
 
 export type RepoItem = {
-    data: {}
+    title: string,
+    orgName: string,
+    link: string,
+    stars: number,
+    updated: string
+}
+
+export type PostPRParams = {
+    username: string,
+    reponame: string,
+    token: string,
+    headBranch: string,
+    baseBranch: string,
+    title: string,
+    body: string
 }
