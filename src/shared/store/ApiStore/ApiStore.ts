@@ -1,11 +1,6 @@
 import {ApiResponse, HTTPMethod, IApiStore, RequestParams, StatusHTTP} from "./types";
 import qs from 'qs';
 
-if (typeof window === 'undefined') {
-    // запускаем под Node, где нет fetch, поэтому переопределяем fetch
-    global.fetch = require('node-fetch');
-}
-
 export default class ApiStore implements IApiStore {
     readonly baseUrl: string;
 
