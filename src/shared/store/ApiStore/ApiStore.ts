@@ -10,13 +10,13 @@ export default class ApiStore implements IApiStore {
 
     async request<SuccessT, ErrorT = any, ReqT = {}>(params: RequestParams<ReqT>): Promise<ApiResponse<SuccessT, ErrorT>> {
         const query = (params.method === HTTPMethod.GET) ? qs.stringify(params.data, {addQueryPrefix: true}) : '';
-        const data = (params.method === HTTPMethod.POST) ? JSON.stringify(params.data) : null;
+        const body = (params.method === HTTPMethod.POST) ? JSON.stringify(params.data) : null;
 
         try {
             const response = await fetch(`${this.baseUrl}/${params.endpoint}${query}`, {
                 method: params.method,
                 headers: params.headers,
-                body: data
+                body
             });
 
             if (response.ok) {
