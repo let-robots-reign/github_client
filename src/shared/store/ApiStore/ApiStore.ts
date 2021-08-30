@@ -1,15 +1,15 @@
-import {ApiResponse, HTTPMethod, IApiStore, RequestParams, StatusHTTP} from "./types";
+import { ApiResponse, HTTPMethod, IApiStore, RequestParams, StatusHTTP } from "./types";
 import qs from 'qs';
 
 export default class ApiStore implements IApiStore {
     readonly baseUrl: string;
 
-    constructor(baseUrl : string) {
+    constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
     }
 
     async request<SuccessT, ErrorT = any, ReqT = {}>(params: RequestParams<ReqT>): Promise<ApiResponse<SuccessT, ErrorT>> {
-        const query = (params.method === HTTPMethod.GET) ? qs.stringify(params.data, {addQueryPrefix: true}) : '';
+        const query = (params.method === HTTPMethod.GET) ? qs.stringify(params.data, { addQueryPrefix: true }) : '';
         const body = (params.method === HTTPMethod.POST) ? JSON.stringify(params.data) : null;
 
         try {

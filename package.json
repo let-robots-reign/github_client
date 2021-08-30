@@ -22,7 +22,9 @@
     "build": "react-app-rewireds build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "scss": "node-sass src/layouts -o src/layouts/css"
+    "scss": "node-sass src/layouts -o src/layouts/css",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +46,9 @@
   },
   "devDependencies": {
     "@types/qs": "^6.9.7",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "prettier": "^2.3.2",
     "react-app-rewire-alias": "^1.0.3",
     "react-app-rewired": "^2.1.8"
   }
