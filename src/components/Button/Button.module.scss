@@ -1,0 +1,17 @@
+@import '@styles/_vars.scss';
+
+button {
+    padding: 16px;
+    background: $accentColor;
+    border-radius: $defaultBorderRadius;
+    border: none;
+}
+
+button:hover {
+    background: $searchHoverColor;
+    cursor: pointer;
+}
+
+button:disabled {
+    background: $borderColor;
+}
