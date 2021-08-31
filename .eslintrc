@@ -7,6 +7,26 @@
         "prettier"
     ],
     "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "max-len": [
+            "error",
+            120,
+            2,
+            {
+                "ignoreUrls": true,
+                "ignoreComments": true,
+                "ignoreRegExpLiterals": true,
+                "ignoreStrings": false,
+                "ignoreTemplateLiterals": false
+            }
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
         "no-console": "error",
         "prettier/prettier": "error",
         "import/order": [
