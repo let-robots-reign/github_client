@@ -1,0 +1,64 @@
+@import "@styles/_vars.scss";
+
+.git-repo-tile {
+    padding: 12px;
+    background: $white;
+    border: 1px solid $borderColor;
+    border-radius: $defaultBorderRadius;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    
+    &__title {
+      font-weight: 700;
+      font-size: 16px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  
+    &__title-link {
+      text-decoration: none;
+      color: $textColor;
+    }
+  
+    &__org-link, &__stars, &__updated {
+      color: $hintColor;
+    }
+  
+    &__org-link {
+      text-decoration: none;
+  
+      &:hover {
+        color: $linkHover;
+      }
+    }
+  
+    &__info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+  
+    &__bottom-info {
+      display: flex;
+      gap: 20px;
+    }
+  
+    &__stars {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+  
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 2px 6px $tileShadowColor;
+    }
+}
+
+
+:export {
+  starIconColor: $starColor;
+}

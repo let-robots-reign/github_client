@@ -1,0 +1,22 @@
+@import '@styles/_vars.scss';
+
+.repos-page {
+    background: $white;
+    padding: 32px;
+  
+    &__search-row {
+      display: flex;
+      margin-bottom: 20px;
+    }
+  
+    &__repos-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(0, 360px));
+      grid-column-gap: 10px;
+      grid-row-gap: 16px;
+    }
+}
+
+:export {
+  searchIconColor: $white;
+}

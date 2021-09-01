@@ -37,7 +37,9 @@ const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
                 </a>
                 <div className={classes['git-repo-tile__bottom-info']}>
                     <div className={classes['git-repo-tile__stars']}>
-                        <StarIcon fillColor="yellow"></StarIcon>
+                        <StarIcon
+                            fillColor={classes['starIconColor']}
+                        ></StarIcon>
                         <span className={classes['git-repo-tile__stars-count']}>
                             {repoItem.stars}
                         </span>
