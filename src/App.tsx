@@ -1,13 +1,12 @@
 import '@styles/theme.scss';
+import ReposSearchPage from './pages/ReposSearchPage';
 
 import './root/root';
-
-import ReposSearchList from './pages/ReposSearchList';
 
 function App() {
     return (
         <div className="App">
-            <ReposSearchList></ReposSearchList>
+            <ReposSearchPage></ReposSearchPage>
         </div>
     );
 }
