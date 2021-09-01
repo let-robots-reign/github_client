@@ -13,6 +13,9 @@
             ],
             "@utils/*": [
                 "src/utils/*"
+            ],
+            "@img/*": [
+                "src/img/*"
             ]
         }
     }
