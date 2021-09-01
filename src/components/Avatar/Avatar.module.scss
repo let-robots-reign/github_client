@@ -1,4 +1,21 @@
-img {
+@import '@styles/_vars.scss';
+
+.avatar {
     width: 80px;
     height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: $white;
+    background-color: $accentColor;
+    border-radius: 50%;
+    text-transform: uppercase;
+}
+
+img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
 }

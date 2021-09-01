@@ -4,6 +4,7 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import RepoTile, { RepoItem } from '@components/RepoTile';
 import SearchIcon from '@components/SearchIcon';
+import orangePic from '@img/orange.jpg';
 
 import classes from './ReposSearchPage.module.scss';
 
@@ -26,6 +27,7 @@ const ReposSearchPage: React.FC = () => {
                 orgName: 'kts',
                 updatedAt: '01.09',
                 stars: 123,
+                avatarSrc: orangePic,
             },
             {
                 title: 'kts-studio-frontend-and-very-long-name',

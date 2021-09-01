@@ -2,7 +2,6 @@ import React from 'react';
 
 import Avatar from '@components/Avatar';
 import StarIcon from '@components/StarIcon';
-import orangePic from '@img/orange.jpg';
 
 import classes from './RepoTile.module.scss';
 
@@ -22,7 +21,11 @@ export type RepoItemProps = {
 const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
     return (
         <div className={classes['git-repo-tile']} onClick={onClick}>
-            <Avatar src={orangePic} alt={repoItem.title}></Avatar>
+            <Avatar
+                src={repoItem.avatarSrc}
+                alt={repoItem.title}
+                letter={repoItem.title[0]}
+            ></Avatar>
             <div className={classes['git-repo-tile__info-block']}>
                 <h3 className={classes['git-repo-tile__title']}>
                     <a
