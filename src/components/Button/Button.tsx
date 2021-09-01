@@ -1,7 +1,9 @@
 import React from 'react';
 
+import './Button.module.scss';
+
 export type ButtonProps = {
-    disabled: boolean;
+    disabled?: boolean;
     onClick?: (e: React.MouseEvent) => void;
     children: React.ReactNode;
 };

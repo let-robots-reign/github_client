@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './SearchIcon.module.scss';
+
 export type SearchIconProps = {
     fillColor: string;
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Avatar.module.scss';
+
 export type AvatarProps = {
     src?: string;
     alt?: string;

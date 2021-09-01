@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import '@styles/App.scss';
 
 import './root/root';
+
+import logo from './logo.svg';
 
 function App() {
     return (
