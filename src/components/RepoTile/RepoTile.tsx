@@ -22,10 +22,17 @@ export type RepoItemProps = {
 const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
     return (
         <div className={classes['git-repo-tile']} onClick={onClick}>
-            <Avatar src={repoItem.avatarSrc} alt={repoItem.title} letter={repoItem.title[0]}></Avatar>
+            <Avatar
+                src={repoItem.avatarSrc}
+                alt={repoItem.title}
+                letter={repoItem.title[0]}
+            ></Avatar>
             <div className={classes['git-repo-tile__info-block']}>
                 <h3 className={classes['git-repo-tile__title']}>
-                    <a href="/" className={classes['git-repo-tile__title-link']}>
+                    <a
+                        href="/"
+                        className={classes['git-repo-tile__title-link']}
+                    >
                         {repoItem.title}
                     </a>
                 </h3>
@@ -34,10 +41,16 @@ const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
                 </a>
                 <div className={classes['git-repo-tile__bottom-info']}>
                     <div className={classes['git-repo-tile__stars']}>
-                        <StarIcon fillColor={classes['starIconColor']}></StarIcon>
-                        <span className={classes['git-repo-tile__stars-count']}>{repoItem.stars}</span>
+                        <StarIcon
+                            fillColor={classes['starIconColor']}
+                        ></StarIcon>
+                        <span className={classes['git-repo-tile__stars-count']}>
+                            {repoItem.stars}
+                        </span>
                     </div>
-                    <div className={classes['git-repo-tile__updated']}>Updated at {repoItem.updatedAt}</div>
+                    <div className={classes['git-repo-tile__updated']}>
+                        Updated at {repoItem.updatedAt}
+                    </div>
                 </div>
             </div>
         </div>

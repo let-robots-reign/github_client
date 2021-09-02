@@ -15,7 +15,8 @@ const ReposSearchPage: React.FC = () => {
 
     const gitHubStore = new GitHubStore();
 
-    const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => setSearchValue(e.target.value);
+    const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
+        setSearchValue(e.target.value);
 
     const handleSearchClick = async (e: React.MouseEvent): Promise<void> => {
         if (isLoading) {
@@ -54,12 +55,18 @@ const ReposSearchPage: React.FC = () => {
                     onChange={handleSearchInput}
                 ></Input>
                 <Button disabled={isLoading} onClick={handleSearchClick}>
-                    <SearchIcon fillColor={classes['searchIconColor']}></SearchIcon>
+                    <SearchIcon
+                        fillColor={classes['searchIconColor']}
+                    ></SearchIcon>
                 </Button>
             </div>
             <div className={classes['repos-page__repos-list']}>
                 {repos.map((repo) => (
-                    <RepoTile repoItem={repo} key={repo.id} onClick={() => handleRepoTileClick(repo)}></RepoTile>
+                    <RepoTile
+                        repoItem={repo}
+                        key={repo.id}
+                        onClick={() => handleRepoTileClick(repo)}
+                    ></RepoTile>
                 ))}
             </div>
         </main>
