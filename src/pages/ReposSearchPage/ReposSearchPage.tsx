@@ -5,7 +5,7 @@ import Input from '@components/Input';
 import RepoTile, { RepoItem } from '@components/RepoTile';
 import SearchIcon from '@components/SearchIcon';
 
-import classes from './ReposSearchPage.module.scss';
+import styles from './ReposSearchPage.module.scss';
 import GitHubStore from '@/store/GitHubStore';
 
 const ReposSearchPage: React.FC = () => {
@@ -47,26 +47,24 @@ const ReposSearchPage: React.FC = () => {
     };
 
     return (
-        <main className={classes['repos-page']}>
-            <div className={classes['repos-page__search-row']}>
+        <main className={styles['repos-page']}>
+            <div className={styles['repos-page__search-row']}>
                 <Input
                     placeholder="Введите название организации"
                     value={searchValue}
                     onChange={handleSearchInput}
-                ></Input>
+                />
                 <Button disabled={isLoading} onClick={handleSearchClick}>
-                    <SearchIcon
-                        fillColor={classes['searchIconColor']}
-                    ></SearchIcon>
+                    <SearchIcon fillColor={styles['searchIconColor']} />
                 </Button>
             </div>
-            <div className={classes['repos-page__repos-list']}>
+            <div className={styles['repos-page__repos-list']}>
                 {repos.map((repo) => (
                     <RepoTile
                         repoItem={repo}
                         key={repo.id}
                         onClick={() => handleRepoTileClick(repo)}
-                    ></RepoTile>
+                    />
                 ))}
             </div>
         </main>
