@@ -10,13 +10,13 @@ input {
     outline: none;
     margin-right: 12px;
     font-family: inherit;
-}
 
-input:focus {
-    border: 1px solid $accentColor;
-    color: $textColor;
-}
+    &:focus {
+        border: 1px solid $accentColor;
+        color: $textColor;
+    }
 
-input:disabled {
-    background: $disabled;
+    &:disabled {
+        background: $disabled;
+    }
 }

@@ -5,13 +5,13 @@ button {
     background: $accentColor;
     border-radius: $defaultBorderRadius;
     border: none;
-}
 
-button:hover {
-    background: $searchHoverColor;
-    cursor: pointer;
-}
+    &:hover {
+        background: $searchHoverColor;
+        cursor: pointer;
+    }
 
-button:disabled {
-    background: $borderColor;
+    &:disabled {
+        background: $borderColor;
+    }
 }

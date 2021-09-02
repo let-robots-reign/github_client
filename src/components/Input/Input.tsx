@@ -9,14 +9,7 @@ export type InputProps = {
 };
 
 const Input: React.FC<InputProps> = ({ value, placeholder, onChange }) => {
-    return (
-        <input
-            type="text"
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-        />
-    );
+    return <input type="text" placeholder={placeholder} value={value} onChange={onChange} />;
 };
 
 export default Input;

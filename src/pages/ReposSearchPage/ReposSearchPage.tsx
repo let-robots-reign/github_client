@@ -4,45 +4,39 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import RepoTile, { RepoItem } from '@components/RepoTile';
 import SearchIcon from '@components/SearchIcon';
-import orangePic from '@img/orange.jpg';
 
 import classes from './ReposSearchPage.module.scss';
+import GitHubStore from '@/store/GitHubStore';
 
 const ReposSearchPage: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [repos, setRepos] = useState<RepoItem[]>([]);
 
-    const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
-        setSearchValue(e.target.value);
+    const gitHubStore = new GitHubStore();
 
-    const handleSearchClick = (e: React.MouseEvent): void => {
+    const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => setSearchValue(e.target.value);
+
+    const handleSearchClick = async (e: React.MouseEvent): Promise<void> => {
         if (isLoading) {
             return;
         }
         setIsLoading(true);
-        const repos: RepoItem[] = [
-            {
-                title: 'Example',
-                orgName: 'kts',
-                updatedAt: '01.09',
-                stars: 123,
-                avatarSrc: orangePic,
-            },
-            {
-                title: 'kts-studio-frontend-and-very-long-name',
-                orgName: 'kts-studio',
-                updatedAt: '01.09',
-                stars: 123,
-            },
-            {
-                title: 'oge_eng_web',
-                orgName: 'edumage',
-                updatedAt: '01.09',
-                stars: 500,
-            },
-        ];
-        setRepos(repos);
+        const response = await gitHubStore.getOrganizationReposList({
+            organizationName: searchValue,
+        });
+        if (response.success) {
+            const res: RepoItem[] = response.data.map((item: any) => {
+                return {
+                    id: item.id,
+                    title: item.name,
+                    orgName: searchValue,
+                    stars: item.stargazers_count,
+                    updatedAt: item.updated_at,
+                };
+            });
+            setRepos(res);
+        }
         setIsLoading(false);
     };
 
@@ -60,18 +54,12 @@ const ReposSearchPage: React.FC = () => {
                     onChange={handleSearchInput}
                 ></Input>
                 <Button disabled={isLoading} onClick={handleSearchClick}>
-                    <SearchIcon
-                        fillColor={classes['searchIconColor']}
-                    ></SearchIcon>
+                    <SearchIcon fillColor={classes['searchIconColor']}></SearchIcon>
                 </Button>
             </div>
             <div className={classes['repos-page__repos-list']}>
                 {repos.map((repo) => (
-                    <RepoTile
-                        repoItem={repo}
-                        key={repo.title}
-                        onClick={() => handleRepoTileClick(repo)}
-                    ></RepoTile>
+                    <RepoTile repoItem={repo} key={repo.id} onClick={() => handleRepoTileClick(repo)}></RepoTile>
                 ))}
             </div>
         </main>
