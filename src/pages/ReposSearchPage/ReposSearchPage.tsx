@@ -59,9 +59,6 @@ const ReposSearchPage: React.FC = () => {
     const handleSearchClick = async (e: React.MouseEvent): Promise<void> => performSearch();
 
     const handleRepoTileClick = (repo: RepoItem): void => {
-        // eslint-disable-next-line no-console
-        console.log(`clicked on repo ${repo.title}`);
-
         setSelectedRepo(repo);
         setDrawerVisible(true);
     };

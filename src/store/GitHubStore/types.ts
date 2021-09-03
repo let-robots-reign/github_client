@@ -15,6 +15,11 @@ export type GetOrgReposParams = {
     organizationName: string;
 };
 
+export type GetBranchesParams = {
+    owner: string;
+    repoName: string;
+};
+
 type RepoItemOwner = {
     id: number;
     url: string;

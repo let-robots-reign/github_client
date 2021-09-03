@@ -17,7 +17,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "npm run lint:fix && react-app-rewired start",
     "build": "react-app-rewireds build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
