@@ -1,4 +1,5 @@
 import '@styles/theme.scss';
+import 'antd/dist/antd.css';
 import ReposSearchPage from './pages/ReposSearchPage';
 
 function App() {

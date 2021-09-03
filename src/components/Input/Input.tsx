@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Input.module.scss';
+import styles from './Input.module.scss';
 
 export type InputProps = {
     value: string;
@@ -10,7 +10,16 @@ export type InputProps = {
 };
 
 const Input: React.FC<InputProps> = ({ value, placeholder, onChange, onKeyUp }) => {
-    return <input type="text" placeholder={placeholder} value={value} onChange={onChange} onKeyUp={onKeyUp} />;
+    return (
+        <input
+            className={styles.input}
+            type="text"
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            onKeyUp={onKeyUp}
+        />
+    );
 };
 
 export default Input;

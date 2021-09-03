@@ -13,11 +13,13 @@ export type RepoBranchesDrawerProps = {
 };
 
 const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, visible, onClose }) => {
+    if (selectedRepo === null || !visible) {
+        return null;
+    }
     return (
-        <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+        <Drawer title={selectedRepo.title} placement="right" onClose={onClose} visible={visible}>
+            <h3>{selectedRepo.title}</h3>
+            <p>{selectedRepo.url}</p>
         </Drawer>
     );
 };

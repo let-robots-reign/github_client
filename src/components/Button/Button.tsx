@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Button.module.scss';
+import styles from './Button.module.scss';
 
 export type ButtonProps = {
     disabled?: boolean;
@@ -10,7 +10,7 @@ export type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({ disabled, onClick, children }) => {
     return (
-        <button disabled={disabled} onClick={onClick}>
+        <button className={styles.button} disabled={disabled} onClick={onClick}>
             {children}
         </button>
     );
