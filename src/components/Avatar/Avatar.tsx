@@ -19,4 +19,4 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt, letter }) => {
     return <div className={`${styles.avatar} ${styles['avatar-letter']}`}>{letter}</div>;
 };
 
-export default Avatar;
+export default React.memo(Avatar);

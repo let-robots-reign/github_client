@@ -17,6 +17,8 @@ const ReposSearchPage: React.FC = () => {
     const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
     const [selectedRepo, setSelectedRepo] = useState<RepoItem | null>(null);
 
+    const [emptyPageText, setEmptyPageText] = useState<string>('Вы еще ничего не искали!');
+
     const gitHubStore = new GitHubStore();
 
     const performSearch = async (): Promise<void> => {
@@ -44,6 +46,9 @@ const ReposSearchPage: React.FC = () => {
                 };
             });
             setRepos(repos);
+        } else {
+            setRepos([]);
+            setEmptyPageText('По такому запросу ничего не найдено!');
         }
         setIsLoading(false);
     };
@@ -68,6 +73,19 @@ const ReposSearchPage: React.FC = () => {
         setSelectedRepo(null);
     };
 
+    const reposContent = repos.length ? (
+        <div>
+            <div className={styles['repos-page__repos-list']}>
+                {repos.map((repo) => (
+                    <RepoTile repoItem={repo} key={repo.id} onClick={() => handleRepoTileClick(repo)} />
+                ))}
+            </div>
+            <RepoBranchesDrawer selectedRepo={selectedRepo} visible={drawerVisible} onClose={onDrawerClose} />
+        </div>
+    ) : (
+        <h1 className={styles['empty-page-text']}>{emptyPageText}</h1>
+    );
+
     return (
         <main className={styles['repos-page']}>
             <div className={styles['repos-page__search-row']}>
@@ -81,12 +99,7 @@ const ReposSearchPage: React.FC = () => {
                     <SearchIcon fillColor={styles['searchIconColor']} />
                 </Button>
             </div>
-            <div className={styles['repos-page__repos-list']}>
-                {repos.map((repo) => (
-                    <RepoTile repoItem={repo} key={repo.id} onClick={() => handleRepoTileClick(repo)} />
-                ))}
-            </div>
-            <RepoBranchesDrawer selectedRepo={selectedRepo} visible={drawerVisible} onClose={onDrawerClose} />
+            {reposContent}
         </main>
     );
 };

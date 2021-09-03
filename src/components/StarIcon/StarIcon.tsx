@@ -17,4 +17,4 @@ const StarIcon: React.FC<StarIconProps> = ({ fillColor }) => {
     );
 };
 
-export default StarIcon;
+export default React.memo(StarIcon);

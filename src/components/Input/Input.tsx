@@ -22,4 +22,4 @@ const Input: React.FC<InputProps> = ({ value, placeholder, onChange, onKeyUp }) 
     );
 };
 
-export default Input;
+export default React.memo(Input);

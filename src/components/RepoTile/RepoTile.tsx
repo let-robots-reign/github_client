@@ -49,4 +49,4 @@ const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
     );
 };
 
-export default RepoTile;
+export default React.memo(RepoTile);
