@@ -1,0 +1,136 @@
+@import "vars";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: $defaultFontSize;
+  font-weight: $defaultFontWeight;
+}
+
+.repos-page {
+  background: $white;
+  padding: 32px;
+
+  &__search-row {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  &__repos-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 360px));
+    grid-column-gap: 10px;
+    grid-row-gap: 16px;
+  }
+}
+
+.search-row {
+  &__input {
+    width: 100%;
+    line-height: 16px;
+    padding: 17px 12px;
+    border: 1px solid $borderColor;
+    border-radius: $defaultBorderRadius;
+    color: $hintColor;
+    outline: none;
+    margin-right: 12px;
+    font-family: inherit;
+
+    &:focus {
+      border: 1px solid $accentColor;
+      color: $textColor;
+    }
+
+    &:disabled {
+      background: $disabled;
+    }
+  }
+
+  &__search-button {
+    padding: 16px;
+    background: $accentColor;
+    border-radius: $defaultBorderRadius;
+    border: none;
+
+    &:hover {
+      background: $searchHoverColor;
+      cursor: pointer;
+    }
+
+    &:disabled {
+      background: $borderColor;
+    }
+  }
+
+  &__search-icon {
+    vertical-align: middle;
+  }
+}
+
+.git-repo-tile {
+  padding: 12px;
+  background: $white;
+  border: 1px solid $borderColor;
+  border-radius: $defaultBorderRadius;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  &__img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  &__title {
+    font-weight: 700;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__title-link {
+    text-decoration: none;
+    color: $textColor;
+  }
+
+  &__org-link, &__stars, &__updated {
+    color: $hintColor;
+  }
+
+  &__org-link {
+    text-decoration: none;
+
+    &:hover {
+      color: $linkHover;
+    }
+  }
+
+  &__info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__bottom-info {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 6px $tileShadowColor;
+  }
+}
