@@ -6,12 +6,7 @@ export type StarIconProps = {
 
 const StarIcon: React.FC<StarIconProps> = ({ fillColor }) => {
     return (
-        <svg
-            width="14"
-            height="13"
-            viewBox="0 0 14 13"
-            xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="14" height="13" viewBox="0 0 14 13" xmlns="http://www.w3.org/2000/svg">
             <path
                 fill={fillColor}
                 fillRule="evenodd"
