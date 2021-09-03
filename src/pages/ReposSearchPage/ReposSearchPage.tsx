@@ -16,9 +16,7 @@ const ReposSearchPage: React.FC = () => {
 
     const gitHubStore = new GitHubStore();
 
-    const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => setSearchValue(e.target.value);
-
-    const handleSearchClick = async (e: React.MouseEvent): Promise<void> => {
+    const performSearch = async (): Promise<void> => {
         if (isLoading) {
             return;
         }
@@ -47,6 +45,16 @@ const ReposSearchPage: React.FC = () => {
         setIsLoading(false);
     };
 
+    const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => setSearchValue(e.target.value);
+
+    const handleKeyUp = async (e: React.KeyboardEvent): Promise<void> => {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    };
+
+    const handleSearchClick = async (e: React.MouseEvent): Promise<void> => performSearch();
+
     const handleRepoTileClick = (repo: RepoItem): void => {
         // eslint-disable-next-line no-console
         console.log(`clicked on repo ${repo.title}`);
@@ -55,7 +63,12 @@ const ReposSearchPage: React.FC = () => {
     return (
         <main className={styles['repos-page']}>
             <div className={styles['repos-page__search-row']}>
-                <Input placeholder="Введите название организации" value={searchValue} onChange={handleSearchInput} />
+                <Input
+                    placeholder="Введите название организации"
+                    value={searchValue}
+                    onChange={handleSearchInput}
+                    onKeyUp={handleKeyUp}
+                />
                 <Button disabled={isLoading} onClick={handleSearchClick}>
                     <SearchIcon fillColor={styles['searchIconColor']} />
                 </Button>

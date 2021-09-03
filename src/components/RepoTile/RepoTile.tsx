@@ -5,6 +5,7 @@ import StarIcon from '@components/StarIcon';
 
 import styles from './RepoTile.module.scss';
 import { RepoItem } from '@/store/GitHubStore/types';
+import { formatUpdatedAtField } from '@/utils/formatUpdatedAtField';
 
 export type RepoItemProps = {
     repoItem: RepoItem;
@@ -39,7 +40,9 @@ const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
                         <StarIcon fillColor={styles['starIconColor']} />
                         <span className={styles['git-repo-tile__stars-count']}>{repoItem.stars}</span>
                     </div>
-                    <div className={styles['git-repo-tile__updated']}>Updated at {repoItem.updatedAt}</div>
+                    <div className={styles['git-repo-tile__updated']}>
+                        Updated {formatUpdatedAtField(repoItem.updatedAt)}
+                    </div>
                 </div>
             </div>
         </div>
