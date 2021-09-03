@@ -49,7 +49,7 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, v
         <Drawer title={`Ветки ${selectedRepo.title}`} placement="right" onClose={onClose} visible={visible}>
             {branches.map((branch) => {
                 return (
-                    <h3>
+                    <h3 key={branch}>
                         <strong>{branch}</strong>
                     </h3>
                 );
