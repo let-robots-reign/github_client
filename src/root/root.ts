@@ -1,4 +1,4 @@
-import GitHubStore from '../store/GitHubStore/GitHubStore';
+import GitHubStore from '@/store/GitHubStore/GitHubStore';
 
 const gitHubStore = new GitHubStore();
 
