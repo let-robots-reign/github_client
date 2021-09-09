@@ -29,22 +29,7 @@ const ReposSearchPage: React.FC = () => {
             organizationName: searchValue,
         });
         if (response.success) {
-            const repos: RepoItem[] = response.data.map((item: any) => {
-                return {
-                    id: item.id,
-                    title: item.name,
-                    stars: item.stargazers_count,
-                    updatedAt: item.updated_at,
-                    url: item.html_url,
-                    owner: {
-                        id: item.owner.id,
-                        login: item.owner.login,
-                        avatar_url: item.owner.avatar_url,
-                        url: item.owner.html_url,
-                    },
-                };
-            });
-            setRepos(repos);
+            setRepos(response.data);
         } else {
             setRepos([]);
             setEmptyPageText('По такому запросу ничего не найдено!');

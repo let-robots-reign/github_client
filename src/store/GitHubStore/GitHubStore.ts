@@ -1,4 +1,4 @@
-import { GetBranchesParams, GetOrgReposParams, IGitHubStore, PostPRParams, RepoItem } from './types';
+import { Branch, GetBranchesParams, GetOrgReposParams, IGitHubStore, PostPRParams, RepoItem } from './types';
 import ApiStore from '@/shared/store/ApiStore';
 import { ApiResponse, HTTPMethod } from '@/shared/store/ApiStore/types';
 
@@ -14,7 +14,7 @@ export default class GitHubStore implements IGitHubStore {
         });
     }
 
-    async getBranchesForRepo(params: GetBranchesParams): Promise<ApiResponse<string[], Error>> {
+    async getBranchesForRepo(params: GetBranchesParams): Promise<ApiResponse<Branch[], Error>> {
         return this.apiStore.request({
             endpoint: `repos/${params.owner}/${params.repoName}/branches`,
             method: HTTPMethod.GET,

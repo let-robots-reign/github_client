@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Drawer } from 'antd';
 
 import GitHubStore from '@/store/GitHubStore';
-import { RepoItem } from '@/store/GitHubStore/types';
+import { Branch, RepoItem } from '@/store/GitHubStore/types';
 
 type DrawerOnCloseEvent = React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement | HTMLButtonElement>;
 
@@ -12,8 +12,10 @@ export type RepoBranchesDrawerProps = {
     onClose: (e: DrawerOnCloseEvent) => void;
 };
 
+const gitHubStore = new GitHubStore();
+
 const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, onClose }) => {
-    const [branches, setBranches] = useState<string[]>([]);
+    const [branches, setBranches] = useState<Branch[]>([]);
 
     useEffect(() => {
         if (!selectedRepo) {
@@ -22,18 +24,16 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, o
         }
 
         let mounted = true;
-        const gitHubStore = new GitHubStore();
-        gitHubStore
-            .getBranchesForRepo({
+
+        (async () => {
+            const response = await gitHubStore.getBranchesForRepo({
                 owner: selectedRepo.owner.login,
-                repoName: selectedRepo.title,
-            })
-            .then((response) => {
-                if (response.success && mounted) {
-                    const branches = response.data.map((item: any) => item.name);
-                    setBranches(branches);
-                }
+                repoName: selectedRepo.name,
             });
+            if (response.success && mounted) {
+                setBranches(response.data);
+            }
+        })();
 
         return () => {
             mounted = false;
@@ -45,11 +45,11 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, o
     }
 
     return (
-        <Drawer title={`Ветки ${selectedRepo.title}`} placement="right" onClose={onClose} visible>
+        <Drawer title={`Ветки ${selectedRepo.name}`} placement="right" onClose={onClose} visible>
             {branches.map((branch) => {
                 return (
-                    <h3 key={branch}>
-                        <strong>{branch}</strong>
+                    <h3 key={branch.name}>
+                        <strong>{branch.name}</strong>
                     </h3>
                 );
             })}

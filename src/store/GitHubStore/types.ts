@@ -9,6 +9,8 @@ import { ApiResponse } from '@/shared/store/ApiStore/types';
 
 export interface IGitHubStore {
     getOrganizationReposList(params: GetOrgReposParams): Promise<ApiResponse<RepoItem[], Error>>;
+
+    getBranchesForRepo(params: GetBranchesParams): Promise<ApiResponse<Branch[], Error>>;
 }
 
 export type GetOrgReposParams = {
@@ -20,19 +22,23 @@ export type GetBranchesParams = {
     repoName: string;
 };
 
+export type Branch = {
+    name: string;
+}
+
 type RepoItemOwner = {
     id: number;
-    url: string;
+    html_url: string;
     avatar_url: string;
     login: string;
 };
 
 export type RepoItem = {
     id: number;
-    title: string;
-    url: string;
-    stars: number;
-    updatedAt: string;
+    html_url: string;
+    name: string;
+    stargazers_count: number;
+    updated_at: string
     owner: RepoItemOwner;
 };
 
