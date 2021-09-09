@@ -10,6 +10,8 @@ import RepoBranchesDrawer from '@/components/RepoBranchesDrawer';
 import GitHubStore from '@/store/GitHubStore';
 import { RepoItem } from '@/store/GitHubStore/types';
 
+const gitHubStore = new GitHubStore();
+
 const ReposSearchPage: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -18,8 +20,6 @@ const ReposSearchPage: React.FC = () => {
     const [selectedRepo, setSelectedRepo] = useState<RepoItem | null>(null);
 
     const [emptyPageText, setEmptyPageText] = useState<string>('Вы еще ничего не искали!');
-
-    const gitHubStore = new GitHubStore();
 
     const performSearch = async (): Promise<void> => {
         if (isLoading) {
@@ -56,7 +56,7 @@ const ReposSearchPage: React.FC = () => {
     const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => setSearchValue(e.target.value);
 
     const handleKeyUp = async (e: React.KeyboardEvent): Promise<void> => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' || e.keyCode === 13) {
             performSearch();
         }
     };

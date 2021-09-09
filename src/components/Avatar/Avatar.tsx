@@ -12,7 +12,7 @@ const Avatar: React.FC<AvatarProps> = ({ src, alt, letter }) => {
     if (src) {
         return (
             <div className={styles.avatar}>
-                <img src={src} alt={alt} />
+                <img className={styles['avatar-img']} src={src} alt={alt} />
             </div>
         );
     }

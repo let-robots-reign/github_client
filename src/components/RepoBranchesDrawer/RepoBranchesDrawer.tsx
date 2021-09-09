@@ -17,7 +17,7 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, v
     const [branches, setBranches] = useState<string[]>([]);
 
     useEffect(() => {
-        if (selectedRepo === null) {
+        if (!selectedRepo) {
             setBranches([]);
             return;
         }
