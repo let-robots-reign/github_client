@@ -89,7 +89,7 @@ const ReposSearchPage: React.FC = () => {
                     onKeyUp={handleKeyUp}
                 />
                 <Button disabled={isLoading} onClick={handleSearchClick}>
-                    <SearchIcon fillColor={styles['searchIconColor']} />
+                    <SearchIcon />
                 </Button>
             </div>
             {reposContent}
