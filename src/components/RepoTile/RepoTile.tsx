@@ -9,7 +9,7 @@ import { formatUpdatedAtField } from '@/utils/formatUpdatedAtField';
 
 export type RepoItemProps = {
     repoItem: RepoItem;
-    onClick?: (e: React.MouseEvent) => void;
+    onClick: (e: React.MouseEvent) => void;
 };
 
 const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {

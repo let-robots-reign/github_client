@@ -16,7 +16,6 @@ const ReposSearchPage: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [repos, setRepos] = useState<RepoItem[]>([]);
-    const [drawerVisible, setDrawerVisible] = useState<boolean>(false);
     const [selectedRepo, setSelectedRepo] = useState<RepoItem | null>(null);
 
     const [emptyPageText, setEmptyPageText] = useState<string>('Вы еще ничего не искали!');
@@ -63,15 +62,9 @@ const ReposSearchPage: React.FC = () => {
 
     const handleSearchClick = async (e: React.MouseEvent): Promise<void> => performSearch();
 
-    const handleRepoTileClick = (repo: RepoItem): void => {
-        setSelectedRepo(repo);
-        setDrawerVisible(true);
-    };
+    const handleRepoTileClick = (repo: RepoItem): void => setSelectedRepo(repo);
 
-    const onDrawerClose = () => {
-        setDrawerVisible(false);
-        setSelectedRepo(null);
-    };
+    const onDrawerClose = () => setSelectedRepo(null);
 
     const reposContent = repos.length ? (
         <div>
@@ -80,7 +73,7 @@ const ReposSearchPage: React.FC = () => {
                     <RepoTile repoItem={repo} key={repo.id} onClick={() => handleRepoTileClick(repo)} />
                 ))}
             </div>
-            <RepoBranchesDrawer selectedRepo={selectedRepo} visible={drawerVisible} onClose={onDrawerClose} />
+            <RepoBranchesDrawer selectedRepo={selectedRepo} onClose={onDrawerClose} />
         </div>
     ) : (
         <h1 className={styles['empty-page-text']}>{emptyPageText}</h1>

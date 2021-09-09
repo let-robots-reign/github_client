@@ -9,11 +9,10 @@ type DrawerOnCloseEvent = React.KeyboardEvent<HTMLDivElement> | React.MouseEvent
 
 export type RepoBranchesDrawerProps = {
     selectedRepo: RepoItem | null;
-    visible: boolean;
     onClose: (e: DrawerOnCloseEvent) => void;
 };
 
-const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, visible, onClose }) => {
+const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, onClose }) => {
     const [branches, setBranches] = useState<string[]>([]);
 
     useEffect(() => {
@@ -41,12 +40,12 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, v
         };
     }, [selectedRepo]);
 
-    if (selectedRepo === null || !visible) {
+    if (selectedRepo === null) {
         return null;
     }
 
     return (
-        <Drawer title={`Ветки ${selectedRepo.title}`} placement="right" onClose={onClose} visible={visible}>
+        <Drawer title={`Ветки ${selectedRepo.title}`} placement="right" onClose={onClose} visible>
             {branches.map((branch) => {
                 return (
                     <h3 key={branch}>
