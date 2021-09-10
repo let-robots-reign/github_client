@@ -47,7 +47,12 @@ const ReposSearchPage: React.FC = () => {
 
     const handleSearchClick = async (e: React.MouseEvent): Promise<void> => performSearch();
 
-    const handleRepoTileClick = (repo: RepoItem): void => setSelectedRepo(repo);
+    const handleRepoTileClick = (e: React.MouseEvent): void => {
+        const selectedRepoID = e.currentTarget.getAttribute('data-id');
+        if (selectedRepoID) {
+            setSelectedRepo(repos.find((repo) => repo.id === parseInt(selectedRepoID)) || null);
+        }
+    };
 
     const onDrawerClose = () => setSelectedRepo(null);
 
@@ -55,7 +60,7 @@ const ReposSearchPage: React.FC = () => {
         <div>
             <div className={styles['repos-page__repos-list']}>
                 {repos.map((repo) => (
-                    <RepoTile repoItem={repo} key={repo.id} onClick={() => handleRepoTileClick(repo)} />
+                    <RepoTile repoItem={repo} key={repo.id} onClick={handleRepoTileClick} />
                 ))}
             </div>
             <RepoBranchesDrawer selectedRepo={selectedRepo} onClose={onDrawerClose} />

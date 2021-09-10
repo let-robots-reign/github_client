@@ -14,7 +14,7 @@ export type RepoItemProps = {
 
 const RepoTile: React.FC<RepoItemProps> = ({ repoItem, onClick }) => {
     return (
-        <div className={styles['git-repo-tile']} onClick={onClick}>
+        <div className={styles['git-repo-tile']} data-id={repoItem.id} onClick={onClick}>
             <Avatar src={repoItem.owner.avatar_url} alt={repoItem.name} letter={repoItem.name[0]} />
             <div className={styles['git-repo-tile__info-block']}>
                 <h3 className={styles['git-repo-tile__title']}>

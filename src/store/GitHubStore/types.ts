@@ -24,7 +24,7 @@ export type GetBranchesParams = {
 
 export type Branch = {
     name: string;
-}
+};
 
 type RepoItemOwner = {
     id: number;
@@ -38,7 +38,7 @@ export type RepoItem = {
     html_url: string;
     name: string;
     stargazers_count: number;
-    updated_at: string
+    updated_at: string;
     owner: RepoItemOwner;
 };
 
