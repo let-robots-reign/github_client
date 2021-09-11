@@ -14,3 +14,13 @@ $tileShadowColor: rgba(182, 182, 182, 0.25);
 $defaultBorderRadius: 6px;
 $defaultFontSize: 14px;
 $defaultFontWeight: 400;
+
+// mixins
+@mixin squared($size, $border-radius: none) {
+    width: $size;
+    height: $size;
+
+    @if ($border-radius != none) {
+        border-radius: $border-radius;
+    }
+};

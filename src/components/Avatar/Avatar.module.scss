@@ -1,10 +1,8 @@
 @import '@styles/_vars.scss';
 
 .avatar {
-    width: 80px;
-    height: 80px;
+    @include squared(80px, 50%);
     flex-shrink: 0;
-    border-radius: 50%;
 }
 
 .avatar-letter {
@@ -18,7 +16,5 @@
 }
 
 .avatar-img {
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
+    @include squared(100%, 50%);
 }
