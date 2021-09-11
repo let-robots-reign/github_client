@@ -18,8 +18,7 @@ export type GetOrgReposParams = {
 };
 
 export type GetBranchesParams = {
-    owner: string;
-    repoName: string;
+    id: string;
 };
 
 export type Branch = {

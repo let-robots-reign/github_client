@@ -16,7 +16,7 @@ export default class GitHubStore implements IGitHubStore {
 
     async getBranchesForRepo(params: GetBranchesParams): Promise<ApiResponse<Branch[], Error>> {
         return this.apiStore.request({
-            endpoint: `repos/${params.owner}/${params.repoName}/branches`,
+            endpoint: `repositories/${params.id}/branches`,
             method: HTTPMethod.GET,
             headers: {},
             data: null,

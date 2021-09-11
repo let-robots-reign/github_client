@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
 import { Drawer } from 'antd';
+import { useParams, useHistory } from 'react-router-dom';
 
 import GitHubStore from '@/store/GitHubStore';
-import { Branch, RepoItem } from '@/store/GitHubStore/types';
+import { Branch } from '@/store/GitHubStore/types';
 
-type DrawerOnCloseEvent = React.KeyboardEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement | HTMLButtonElement>;
-
-export type RepoBranchesDrawerProps = {
-    selectedRepo: RepoItem | null;
-    onClose: (e: DrawerOnCloseEvent) => void;
+type DrawerURLParams = {
+    id?: string;
 };
 
 const gitHubStore = new GitHubStore();
 
-const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, onClose }) => {
+const RepoBranchesDrawer: React.FC = () => {
     const [branches, setBranches] = useState<Branch[]>([]);
 
+    const history = useHistory();
+    const { id } = useParams<DrawerURLParams>();
+
+    const onDrawerClose = () => history.push('/repos');
+
     useEffect(() => {
-        if (!selectedRepo) {
+        if (!id) {
             setBranches([]);
             return;
         }
@@ -27,8 +30,7 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, o
 
         (async () => {
             const response = await gitHubStore.getBranchesForRepo({
-                owner: selectedRepo.owner.login,
-                repoName: selectedRepo.name,
+                id,
             });
             if (response.success && mounted) {
                 setBranches(response.data);
@@ -38,14 +40,14 @@ const RepoBranchesDrawer: React.FC<RepoBranchesDrawerProps> = ({ selectedRepo, o
         return () => {
             mounted = false;
         };
-    }, [selectedRepo]);
+    }, [id]);
 
-    if (selectedRepo === null) {
+    if (!id) {
         return null;
     }
 
     return (
-        <Drawer title={`Ветки ${selectedRepo.name}`} placement="right" onClose={onClose} visible>
+        <Drawer title="Ветки" placement="right" onClose={onDrawerClose} visible>
             {branches.map((branch) => {
                 return (
                     <h3 key={branch.name}>

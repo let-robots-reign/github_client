@@ -4,16 +4,16 @@ import Button from '@components/Button';
 import Input from '@components/Input';
 import RepoTile from '@components/RepoTile';
 import SearchIcon from '@components/SearchIcon';
+import { useHistory } from 'react-router-dom';
 
 import styles from './ReposSearchPage.module.scss';
-import RepoBranchesDrawer from '@/components/RepoBranchesDrawer';
 import { useReposContext } from '@/contexts/ReposContext';
-import { RepoItem } from '@/store/GitHubStore/types';
 
 const ReposSearchPage: React.FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
-    const [selectedRepo, setSelectedRepo] = useState<RepoItem | null>(null);
     const [emptyPageText, setEmptyPageText] = useState<string>('Вы еще ничего не искали!');
+
+    const history = useHistory();
 
     const { list, isLoading, load } = useReposContext();
 
@@ -37,11 +37,9 @@ const ReposSearchPage: React.FC = () => {
     const handleRepoTileClick = (e: React.MouseEvent): void => {
         const selectedRepoID = e.currentTarget.getAttribute('data-id');
         if (selectedRepoID) {
-            setSelectedRepo(list.find((repo) => repo.id === parseInt(selectedRepoID)) || null);
+            history.push(`/repos/${selectedRepoID}`);
         }
     };
-
-    const onDrawerClose = () => setSelectedRepo(null);
 
     const reposContent = list.length ? (
         <div>
@@ -50,7 +48,6 @@ const ReposSearchPage: React.FC = () => {
                     <RepoTile repoItem={repo} key={repo.id} onClick={handleRepoTileClick} />
                 ))}
             </div>
-            <RepoBranchesDrawer selectedRepo={selectedRepo} onClose={onDrawerClose} />
         </div>
     ) : (
         <h1 className={styles['empty-page-text']}>{emptyPageText}</h1>
