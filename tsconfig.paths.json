@@ -19,6 +19,9 @@
             ],
             "@img/*": [
                 "src/img/*"
+            ],
+            "@contexts/*": [
+                "src/contexts/*"
             ]
         }
     }

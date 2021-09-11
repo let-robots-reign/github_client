@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 import Button from '@components/Button';
 import Input from '@components/Input';
@@ -6,8 +6,8 @@ import RepoTile from '@components/RepoTile';
 import SearchIcon from '@components/SearchIcon';
 
 import styles from './ReposSearchPage.module.scss';
-import { ReposContext } from '@/App';
 import RepoBranchesDrawer from '@/components/RepoBranchesDrawer';
+import { useReposContext } from '@/contexts/ReposContext';
 import { RepoItem } from '@/store/GitHubStore/types';
 
 const ReposSearchPage: React.FC = () => {
@@ -15,7 +15,7 @@ const ReposSearchPage: React.FC = () => {
     const [selectedRepo, setSelectedRepo] = useState<RepoItem | null>(null);
     const [emptyPageText, setEmptyPageText] = useState<string>('Вы еще ничего не искали!');
 
-    const { list, isLoading, load } = useContext(ReposContext);
+    const { list, isLoading, load } = useReposContext();
 
     const search = async () => {
         await load(searchValue);
