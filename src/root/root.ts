@@ -7,6 +7,7 @@ const EXAMPLE_ORGANIZATION = 'ktsstudio';
 gitHubStore
     .getOrganizationReposList({
         organizationName: EXAMPLE_ORGANIZATION,
+        page: 1,
     })
     .then((result) => {
         // eslint-disable-next-line no-console

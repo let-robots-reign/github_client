@@ -12,18 +12,22 @@ const ReposProvider: React.FC = ({ children }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [repos, setRepos] = useState<RepoItem[]>([]);
 
-    const performSearch = async (orgName: string): Promise<void> => {
+    const performSearch = async (orgName: string, page: number): Promise<void> => {
         if (isLoading) {
             return;
         }
         setIsLoading(true);
+
         const response = await gitHubStore.getOrganizationReposList({
             organizationName: orgName,
+            page,
         });
         if (response.success) {
-            setRepos(response.data);
-        } else {
-            setRepos([]);
+            if (page === 1) {
+                setRepos(response.data);
+            } else {
+                setRepos([...repos, ...response.data]);
+            }
         }
         setIsLoading(false);
     };
@@ -33,7 +37,7 @@ const ReposProvider: React.FC = ({ children }) => {
             value={{
                 list: repos,
                 isLoading,
-                load: async (orgName: string) => await performSearch(orgName),
+                load: async (orgName: string, page: number) => await performSearch(orgName, page),
             }}
         >
             {children}
