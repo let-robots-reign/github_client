@@ -11,6 +11,7 @@ const Provider = ReposContext.Provider;
 const ReposProvider: React.FC = ({ children }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [repos, setRepos] = useState<RepoItem[]>([]);
+    const [isChunkEmpty, setIsChunkEmpty] = useState<boolean>(true);
 
     const performSearch = async (orgName: string, page: number): Promise<void> => {
         if (isLoading) {
@@ -23,6 +24,9 @@ const ReposProvider: React.FC = ({ children }) => {
             page,
         });
         if (response.success) {
+            const newChunk = response.data;
+            setIsChunkEmpty(!newChunk.length);
+
             if (page === 1) {
                 setRepos(response.data);
             } else {
@@ -37,6 +41,7 @@ const ReposProvider: React.FC = ({ children }) => {
             value={{
                 list: repos,
                 isLoading,
+                isChunkEmpty,
                 load: async (orgName: string, page: number) => await performSearch(orgName, page),
             }}
         >

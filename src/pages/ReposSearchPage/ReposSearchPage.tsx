@@ -17,7 +17,7 @@ const ReposSearchPage: React.FC = () => {
 
     const history = useHistory();
 
-    const { list, isLoading, load } = useReposContext();
+    const { list, isLoading, isChunkEmpty, load } = useReposContext();
 
     const startSearch = async () => {
         setCurrentPage(1);
@@ -55,11 +55,11 @@ const ReposSearchPage: React.FC = () => {
         <InfiniteScroll
             dataLength={list.length}
             next={search}
-            hasMore={!!list.length}
-            loader={<h2>Loading...</h2>}
+            hasMore={!isChunkEmpty}
+            loader={<h2>Загрузка...</h2>}
             endMessage={
-                <p style={{ textAlign: 'center' }}>
-                    <b>Yay! You have seen it all</b>
+                <p className={styles['end-of-list-message']}>
+                    <strong>Найдено репозиториев: {list.length}</strong>
                 </p>
             }
         >
