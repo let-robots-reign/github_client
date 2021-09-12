@@ -6,6 +6,7 @@ $hintColor: #7E7E7E;
 $accentColor: #FF5555;
 $linkHover: #208FBF;
 $disabled: #F9F9F9;
+$starColor: #FF9432;
 $searchHoverColor: rgba(255, 85, 85, 0.5);
 $tileShadowColor: rgba(182, 182, 182, 0.25);
 
@@ -13,3 +14,13 @@ $tileShadowColor: rgba(182, 182, 182, 0.25);
 $defaultBorderRadius: 6px;
 $defaultFontSize: 14px;
 $defaultFontWeight: 400;
+
+// mixins
+@mixin squared($size, $border-radius: none) {
+    width: $size;
+    height: $size;
+
+    @if ($border-radius != none) {
+        border-radius: $border-radius;
+    }
+};

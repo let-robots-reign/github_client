@@ -1,0 +1,20 @@
+@import '@styles/_vars.scss';
+
+.avatar {
+    @include squared(80px, 50%);
+    flex-shrink: 0;
+}
+
+.avatar-letter {
+    line-height: 80px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: $white;
+    background-color: $accentColor;
+    text-transform: uppercase;
+}
+
+.avatar-img {
+    @include squared(100%, 50%);
+}

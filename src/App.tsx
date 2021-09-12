@@ -1,27 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import '@styles/theme.scss';
+import 'antd/dist/antd.css';
 
-import './root/root';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
+import RepoBranchesDrawer from './components/RepoBranchesDrawer';
+import ReposSearchPage from './pages/ReposSearchPage';
+import ReposProvider from '@/contexts/ReposContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ReposProvider>
+            <div className="App">
+                <BrowserRouter>
+                    <Switch>
+                        <Route path="/repos/:id">
+                            <>
+                                <ReposSearchPage />
+                                <RepoBranchesDrawer />
+                            </>
+                        </Route>
+                        <Route path="/repos" component={ReposSearchPage} />
+                        <Redirect to="/repos" />
+                    </Switch>
+                </BrowserRouter>
+            </div>
+        </ReposProvider>
+    );
 }
 
 export default App;

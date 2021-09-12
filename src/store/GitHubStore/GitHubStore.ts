@@ -1,6 +1,6 @@
-import ApiStore from '../../shared/store/ApiStore';
-import {GetOrgReposParams, IGitHubStore, PostPRParams, RepoItem} from "./types";
-import {ApiResponse, HTTPMethod} from "../../shared/store/ApiStore/types";
+import { Branch, GetBranchesParams, GetOrgReposParams, IGitHubStore, PostPRParams, RepoItem } from './types';
+import ApiStore from '@/shared/store/ApiStore';
+import { ApiResponse, HTTPMethod } from '@/shared/store/ApiStore/types';
 
 export default class GitHubStore implements IGitHubStore {
     private readonly apiStore = new ApiStore('https://api.github.com');
@@ -10,23 +10,35 @@ export default class GitHubStore implements IGitHubStore {
             endpoint: `orgs/${params.organizationName}/repos`,
             method: HTTPMethod.GET,
             headers: {},
-            data: null
+            data: {
+                per_page: 40,
+                page: params.page,
+            },
         });
     }
 
-    async postPullRequestForHW(params: PostPRParams) : Promise<ApiResponse<Object, Error>> {
+    async getBranchesForRepo(params: GetBranchesParams): Promise<ApiResponse<Branch[], Error>> {
+        return this.apiStore.request({
+            endpoint: `repositories/${params.id}/branches`,
+            method: HTTPMethod.GET,
+            headers: {},
+            data: null,
+        });
+    }
+
+    async postPullRequestForHW(params: PostPRParams): Promise<ApiResponse<Object, Error>> {
         return this.apiStore.request({
             endpoint: `repos/${params.username}/${params.reponame}/pulls`,
             method: HTTPMethod.POST,
             headers: {
-                Authorization: `token ${params.token}`
+                Authorization: `token ${params.token}`,
             },
             data: {
                 head: params.headBranch,
                 base: params.baseBranch,
                 title: params.title,
-                body: params.body
-            }
+                body: params.body,
+            },
         });
     }
 }

@@ -1,0 +1,30 @@
+@import '@styles/_vars.scss';
+
+.repos-page {
+    background: $white;
+    padding: 32px;
+  
+    &__search-row {
+      display: flex;
+      margin-bottom: 20px;
+    }
+  
+    &__repos-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(0, 360px));
+      grid-column-gap: 10px;
+      grid-row-gap: 16px;
+    }
+}
+
+.empty-page-text {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2em;
+}
+
+.end-of-list-message {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 16px;
+}
